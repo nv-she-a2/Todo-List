@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Todo List</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="/todo-list.js"></script>
+		<link href="/styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<h1>My Todo List</h1>
+		<div id="todo-table">
+			<form>
+				<input type="text" name="item" placeholder="Add new item..." required>
+				<button type="submit">Add</button>
+			</form>
+			<ul>
+			<% for(var i=0; i < todos.length; i++){ %>
+				<li><%= todos[i].item %></li>
+			<% } %>
+			</ul>
+		</div>
+		<script>
+			// Create a "close" button and append it to each list item
+			var myNodelist = document.getElementsByTagName("li");
+			var i;
+			for (i = 0; i < myNodelist.length; i++) {
+			  var span = document.createElement("span");
+			  var txt = document.createTextNode("\u00D7");
+			  span.className = "close";
+			  span.title = "Delete";
+			  span.appendChild(txt);
+			  myNodelist[i].appendChild(span);
+			}
+		</script>
+	</body>
+</html>
