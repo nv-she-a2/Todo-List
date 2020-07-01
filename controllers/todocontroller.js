@@ -20,6 +20,16 @@ module.exports = function(app){
  			return todo.item.replace(/ /g, '-') !== req.params.item;
  		});
  		res.json(data);
- 	});
+	 });
+	 
+	app.put('/todo/:item', urlencodedParser, function(req, res){
+		data.forEach(function(arr){
+			if(arr.item.replace(/ /g, '-') === req.params.item)
+			{
+				arr.item = req.body.item;
+			}
+		});
+		res.json(data);
+   	});
 
 };
