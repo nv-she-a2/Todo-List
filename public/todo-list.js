@@ -33,15 +33,17 @@ $(document).ready(function(){
   var item;
   $('.list').on('dblclick',function(){
     var list_item = $(this)[0];
-    item = list_item.innerText.replace(/ /g, "-");
+    item = list_item.innerText;
     list_item.innerText = "";
     list_item.nextElementSibling.style.display = 'block';
+    list_item.nextElementSibling.value = item;
     list_item.nextElementSibling.focus();
   });
 
   $('.input').on('focusout',function(){
     var input = $(this)[0].value;
     var todo = {item: input};
+    item = item.replace(/ /g, "-");
     $.ajax({
       type: 'PUT',
       url: '/todo/'+item,
