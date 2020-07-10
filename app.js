@@ -1,5 +1,6 @@
 var express = require('express');
 var todoController = require('./controllers/todocontroller');
+const { urlencoded } = require('body-parser');
 
 var app = express();
 
@@ -8,7 +9,8 @@ app.set('view engine', 'ejs');
 
 //static files
 app.use(express.static('./public'));
-
+app.use(express.json());
+app.use(urlencoded({extended: false}));
 //fire controllers
 todoController(app);
 
