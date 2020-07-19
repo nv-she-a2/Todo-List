@@ -1,6 +1,6 @@
 var express = require('express');
 var todoController = require('./controllers/todocontroller');
-const { urlencoded } = require('body-parser');
+const port = process.env.PORT || 3000;
 
 var app = express();
 
@@ -10,11 +10,11 @@ app.set('view engine', 'ejs');
 //static files
 app.use(express.static('./public'));
 app.use(express.json());
-app.use(urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false}));
 //fire controllers
 todoController(app);
 
 //listen to port
-app.listen(3000);
+app.listen(port);
 console.log('you are listening to port 3000');
 

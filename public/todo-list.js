@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   $('form').on('submit', function(){
     var item = $('form input');
-    var todo = {item: item.val()};
+    var todo = {item: item.val(), done: false};
     $.ajax({
       type: 'POST',
       url: '/todo',
@@ -33,7 +33,7 @@ $(document).ready(function(){
   var item;
   $('.list').on('dblclick',function(){
     var list_item = $(this)[0];
-    item = list_item.innerText;
+    item = list_item.innerHTML;
     list_item.innerText = "";
     list_item.nextElementSibling.style.display = 'block';
     list_item.nextElementSibling.value = item;
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
   $('.input').on('focusout',function(){
     var input = $(this)[0].value;
-    var todo = {item: input};
+    var todo = {item: input, done: false};
     item = item.replace(/ /g, "-");
     $.ajax({
       type: 'PUT',

@@ -1,32 +1,33 @@
-var data = [{item: 'get milk'}, 
-			{item: 'walk dog'}, 
-			{item: 'read some algorithms'}] ;
+const mongoose = require('mongoose');
+require('../db');
+var Todo = mongoose.model('ToDo'); 
 
 module.exports = function(app){
 	app.get('/todo', function(req, res){
- 		res.render('todo', {todos: data});
+		Todo.find()
+			.then(data => res.render('todo', {todos: data}))
+			.catch(err => res.json(err))
 	});
 
 	app.post('/todo', function(req, res){
- 		data.push(req.body);
- 		res.json(data);
+		const todo = new Todo(req.body);
+		todo.save()
+			.then(data => res.json(data))
+			.catch(err => res.json(err))
 	});
 
 	app.delete('/todo/:item', function(req, res){
- 		data = data.filter(function(todo){
- 			return todo.item.replace(/ /g, '-') !== req.params.item;
- 		});
- 		res.json(data);
-	 });
-	 
+		var str = req.params.item.replace(/-/g, ' ');
+		Todo.findOneAndDelete({'item': str})
+			.then(data => res.json(data))
+			.catch(err => res.json(err))
+	});
+	
 	app.put('/todo/:item', function(req, res){
-		data.forEach(function(arr){
-			if(arr.item.replace(/ /g, '-') === req.params.item)
-			{
-				arr.item = req.body.item;
-			}
-		});
-		res.json(data);
-   	});
-
+		var str = req.params.item.replace(/-/g, ' ');
+		Todo.findOneAndUpdate({'item': str},req.body)
+			.then(data => {
+				res.json(data);})
+			.catch(err => res.json(err))
+	});
 };
