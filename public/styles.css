@@ -6,7 +6,7 @@ body{
 
 #todo-table{
     position: relative;
-    width: 95%;
+    width: 40%;
     background: #090d13;
     margin: 0 auto;
     padding: 20px;
@@ -20,7 +20,7 @@ body{
     clear: both;
 }
 
-input[type="text"]{
+form input[type="text"]{
     width: 70%;
     padding: 20px;
     background:#181c22;
@@ -31,9 +31,15 @@ input[type="text"]{
 }
 
 ul li input[type=text] {
-    padding: 0px 0px 0px 0px;
+    padding: 12px 8px 12px 40px;
     position: relative;
-    display: none;
+    box-sizing: border-box;
+    background:#181c22;
+    border: 0;
+    width: 70%;
+    color: #989898;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 button{
@@ -72,10 +78,6 @@ li:hover .close{
     opacity: 1;
 }
 
-label{
-    cursor: pointer;
-}
-
 h1{
     color: white;
     background: no-repeat center;
@@ -88,9 +90,13 @@ h1{
 .close {
     position: absolute;
     opacity: 0;
-    top: 0;
+    top: 10%;
     right: 0;
     padding: 12px 16px 12px 16px;
     z-index: 5;
     transition: 0.1s;
+    cursor: pointer;
+}
+.input:focus{
+    cursor: text;
 }

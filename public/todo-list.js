@@ -17,9 +17,8 @@ $(document).ready(function(){
   });
 
   $('.close').on('click', function(){
-    var parent = $(this.parentNode);
-    var val= parent[0].textContent.replace(/ /g, "-");
-    val = val.substring(0, val.length-1);
+    var prev = $(this.previousSibling)[0];
+    var val= prev.value.replace(/ /g, "-");
     $.ajax({
       type: 'DELETE',
       url: '/todo/'+val,
@@ -31,13 +30,11 @@ $(document).ready(function(){
     return false;
   });
   var item;
-  $('.list').on('dblclick',function(){
+  $('.input').on('dblclick',function(){
     var list_item = $(this)[0];
-    item = list_item.innerHTML;
-    list_item.innerText = "";
-    list_item.nextElementSibling.style.display = 'block';
-    list_item.nextElementSibling.value = item;
-    list_item.nextElementSibling.focus();
+    item = list_item.value;
+    $('.input').attr('readonly',false);
+    list_item.focus();
   });
 
   $('.input').on('focusout',function(){
