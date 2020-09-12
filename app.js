@@ -1,6 +1,7 @@
 var express = require('express');
+const cookieParser = require('cookie-parser');
 var todoController = require('./controllers/todocontroller');
-const port = process.env.PORT || 3000;
+const port = 3000 || process.env.PORT;
 
 var app = express();
 
@@ -11,6 +12,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+
 //fire controllers
 todoController(app);
 
