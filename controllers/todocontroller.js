@@ -12,7 +12,7 @@ function generateUUID() {
 
 module.exports = function(app){
 	app.get('/todo', function(req, res){
-		UUID = req.cookies['userId'];
+		UUID = req.cookies.userId;
 		if(UUID){
 			Todo.find({userId:UUID})
 				.then(data => res.render('todo', {todos: data}))
@@ -22,6 +22,7 @@ module.exports = function(app){
 		{
 			UUID = generateUUID();
 			res.cookie('userId',UUID);
+			res.render('todo',{todos:{}});
 		}
 	});
 
