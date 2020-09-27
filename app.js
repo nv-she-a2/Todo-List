@@ -1,7 +1,7 @@
 var express = require('express');
 const cookieParser = require('cookie-parser');
 var todoController = require('./controllers/todocontroller');
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 
 var app = express();
 

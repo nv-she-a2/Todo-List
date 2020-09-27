@@ -1,7 +1,7 @@
 // const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 require('dotenv').config();
-const url = 'mongodb://localhost:27017/todo_db' || process.env.MONGODB_URI;
+const url =  process.env.MONGODB_URI || 'mongodb://localhost:27017/todo_db';
 
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
