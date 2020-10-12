@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('../db');
-var Todo = mongoose.model('ToDo'); 
+var Todo = mongoose.model('ToDo');
+var User = mongoose.model('User');
 var UUID;
 
 function generateUUID() { 
@@ -11,6 +12,9 @@ function generateUUID() {
 }
 
 module.exports = function(app){
+	app.get('/', function(req, res){
+		res.render('home');
+	});
 	app.get('/todo', function(req, res){
 		UUID = req.cookies.userId;
 		if(UUID){
