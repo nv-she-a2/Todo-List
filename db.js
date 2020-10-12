@@ -17,4 +17,12 @@ const todoSchema = new mongoose.Schema({
   item: String
 });
 
+const userSchema = new mongoose.Schema({
+  name: String,
+  emailId: String,
+  password: String,
+  userId: String
+});
+
 const ToDo = mongoose.model('ToDo', todoSchema);
+const User = mongoose.model('User', userSchema);
